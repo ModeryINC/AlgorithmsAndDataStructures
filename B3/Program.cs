@@ -4,25 +4,24 @@ using System;
 
 namespace B3 {
     class Program {
-        internal static readonly string[] sourceArray = ["Lithuania", "Latvia", "Estonia"];
-
         static void Main(string[] args) {
-            HighestPeak austriaHighestPeak = new("", "", 0);
-            int peakHeigthSum = 0;
-            int peakCount = 0;
-            List<HighestPeak> peaksList = Homework.CreateList();
             List<HighestPeak> peaksListSecond = [];
+            HighestPeak austriaHighestPeak = new("", "", 0);
+            List<HighestPeak> peaksList = Homework.CreateList();
+            string[] sourceArray = ["Lithuania", "Latvia", "Estonia"];
             Dictionary<string, double> countryPopulations = Homework.CreateDictionary();
-            foreach(HighestPeak peak in peaksList) {
-                if (peak.Country == "Austria" && peak.Elevation > austriaHighestPeak.Elevation) {
-                    austriaHighestPeak = peak;
-                }
-                if (4000 < peak.Elevation && peak.Elevation < 5000 ) {
-                    peaksListSecond.Add(peak);
-                }
-                peakHeigthSum += peak.Elevation;
-                peakCount++;
-            }
+            
+            peaksList.ForEach(peak => {
+                if (peak.Country == "Austria" && peak.Elevation > austriaHighestPeak.Elevation) austriaHighestPeak = peak;
+                if (4000 < peak.Elevation && peak.Elevation < 5000 ) peaksListSecond.Add(peak);
+            });
+            
+            // Można też:
+            // foreach(HighestPeak peak in peaksList) {
+            //     if (peak.Country == "Austria" && peak.Elevation > austriaHighestPeak.Elevation) austriaHighestPeak = peak;
+            //     if (4000 < peak.Elevation && peak.Elevation < 5000 ) peaksListSecond.Add(peak);
+            // }
+            
             Console.Write("\n\n#01\n");
             austriaHighestPeak.ShowInfo();
             
@@ -30,7 +29,7 @@ namespace B3 {
             peaksList[^2].ShowInfo();
             
             Console.Write("\n\n#03\n > ");
-            Console.Write("Średnia wysokość: " + peakHeigthSum / peakCount);
+            Console.Write("Średnia wysokość: " + peaksList.Sum(peak => peak.Elevation) / peaksList.Count);
             
             Console.Write("\n\n#04\n");
             peaksList.ForEach(peak => peak.ShowInfo());
