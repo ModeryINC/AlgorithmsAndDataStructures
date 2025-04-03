@@ -7,7 +7,7 @@ namespace B3 {
         static void Main(string[] args) {
             List<HighestPeak> peaksListSecond = [];
             HighestPeak austriaHighestPeak = new("", "", 0);
-            List<HighestPeak> peaksList = Homework.CreateList();
+            List<HighestPeak> peaksList = new();
             string[] sourceArray = ["Lithuania", "Latvia", "Estonia"];
             Dictionary<string, double> countryPopulations = Homework.CreateDictionary();
             
@@ -25,11 +25,11 @@ namespace B3 {
             Console.Write("\n\n#01\n");
             austriaHighestPeak.ShowInfo();
             
-            Console.Write("\n\n#02\n");
-            peaksList[^2].ShowInfo();
+            // Console.Write("\n\n#02\n");
+            // peaksList[^2].ShowInfo();
             
             Console.Write("\n\n#03\n > ");
-            Console.Write("Średnia wysokość: " + peaksList.Sum(peak => peak.Elevation) / peaksList.Count);
+            Console.Write("Średnia wysokość: " + ((peaksList.Count != 0) ? peaksList.Sum(peak => peak.Elevation) / peaksList.Count : "--")); // Lub try catch
             
             Console.Write("\n\n#04\n");
             peaksList.ForEach(peak => peak.ShowInfo());
