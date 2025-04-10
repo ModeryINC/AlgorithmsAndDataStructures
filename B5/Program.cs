@@ -18,7 +18,8 @@ namespace B5 {
             stopwatch.Stop();
             Console.Write(
                 string.Join(" | ", PrimaryNumbersList.Order().Take(20))
-                + "\nCzas wykonywania: " + stopwatch.ElapsedMilliseconds + "ms\n");
+                + "\nCzas wykonywania: " + Math.Round(stopwatch.ElapsedMilliseconds/1000.0)
+                + "s | " + stopwatch.ElapsedMilliseconds + "ms\n");
         }
     }
 }
