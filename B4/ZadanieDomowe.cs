@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using System;
 
 namespace B4 {
     class ZadanieDomowe {
@@ -24,7 +24,5 @@ namespace B4 {
                 return [];
             } 
         }
-
-
     }
 }

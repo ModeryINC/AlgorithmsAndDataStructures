@@ -7,7 +7,6 @@ namespace B2 {
     {
         private readonly int distance = (distance > 0) ? distance : 0;
         private readonly string portName = portName;
-
         public int GetDistance() {
             return distance;
         }

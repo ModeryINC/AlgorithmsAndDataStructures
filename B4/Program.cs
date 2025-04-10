@@ -30,7 +30,7 @@ namespace B4 {
             
             // E
             Console.Write("\n\nE\n");
-            double answerE = words.Distinct().ToList().Average(word => word.Length);
+            double answerE = words.Select(word => word.ToLower()).Distinct().ToList().Average(word => word.Length);
             Console.Write("{0:0.0}", answerE); 
             
             // F
