@@ -19,18 +19,35 @@ namespace B5 {
                 if (number % i == 0 || number % (i + 2) == 0) return false;
             return true;
         }
-        public static async Task<List<int>> Find(int start = 1, int count = 833334) {
-            await Task.Run(() => {});
-            if (start < 1 || count < 0) return [];
+        public static List<int> Find(int start = 0, int count = 833334) {
+            if (start < 0 || count < 0) return [];
             ConcurrentBag<int> PrimaryNumbersList = [];
             Parallel.For(0, count, i => {
+                if (i == 0 && start == 0) {
+                    PrimaryNumbersList.Add(2);
+                    PrimaryNumbersList.Add(3);
+                    PrimaryNumbersList.Add(5);
+                    return;
+                }
                 int numberBase = (i + start) * 6;
                 int numberFirst = numberBase + 1,
                     numberSecond = numberBase + 5;
                 if(IsPrimary(numberFirst)) PrimaryNumbersList.Add(numberFirst);
                 if(IsPrimary(numberSecond)) PrimaryNumbersList.Add(numberSecond);
             });
-            return [.. PrimaryNumbersList.Order()];
+            return [.. PrimaryNumbersList];
+        }
+        public static async Task<List<int>> CreateTasks(int start = 0, int end = 10000000, int parts = 2) {
+            if (start < 0 || end < 2 || start > end || parts < 1 || parts > 100) return [];
+            int chunkSize = ((end - start) / (6 * parts)) + 1;
+            List<Task<List<int>>> tasks = [];
+            for (int i = 0; i < parts; i++) {
+                int chunkStart = start + i * chunkSize;
+                int chunkCount = (i == parts - 1) ? (end / 6) - (chunkSize * i) : chunkSize;
+                tasks.Add(Task.Run(() => Find(chunkStart, chunkCount)));
+            }
+            var results = await Task.WhenAll(tasks);
+            return [.. results.SelectMany(x => x).Order()];
         }
 	}
 }

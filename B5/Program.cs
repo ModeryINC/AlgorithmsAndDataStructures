@@ -10,15 +10,15 @@ namespace B5 {
     class Program {
         static async Task Main(string[] args) {
             Stopwatch stopwatch = Stopwatch.StartNew();
-            Task<List<int>> taskFirst = PrimaryNumbers.Find();
-            Task<List<int>> taskSecond = PrimaryNumbers.Find(833334);
-            List<int> PrimaryNumbersList = [2, 3, 5];
-            PrimaryNumbersList.AddRange(await taskFirst);
-            PrimaryNumbersList.AddRange(await taskSecond);
+            List<int> PrimaryNumbersList = await PrimaryNumbers.CreateTasks(0, 10000000, 1);
             stopwatch.Stop();
+            if (PrimaryNumbersList.Count == 0) {
+                Console.Write("Error occurred in generating tasks!\n");
+                return;
+            }
             Console.Write(
                 "| " + string.Join(" | ", PrimaryNumbersList.Order().Take(20)) + " |\n"
-                + "Czas wykonywania: " + Math.Round(stopwatch.ElapsedMilliseconds / 1000.0)
+                + "Czas wykonywania: " + Math.Round(stopwatch.ElapsedMilliseconds / 100.0) / 10.0
                 + "s | " + stopwatch.ElapsedMilliseconds + "ms\nIlość liczb: " + PrimaryNumbersList.Count + "\n");
         }
     }
