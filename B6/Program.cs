@@ -1,9 +1,5 @@
 ﻿using System.Diagnostics;
 using System;
-/* uwaga: jesli zdarzy sie, ze system nie bedzie chcial Panstwu wykrywac biblioteki System.Diagnostics, prosze sprobowac nastepujacego rozwiazania:
- * w solution explorerze (menu po prawej stronie) kliknąć prawym przyciskiem myszy na References -> Add Reference -> wyszukać "System" 
- * -> zaznaczyć (ważne!) ptaszkiem z lewej strony i kliknąć ok
- * */
 
 namespace B6 {
     class Program {
