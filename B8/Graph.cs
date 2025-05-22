@@ -144,14 +144,13 @@ namespace B8 {
             for (int i = 0; i < AdjacencyMatrix.Size; i++) {
                 List<int> row = AdjacencyMatrix.GetRow(i) ?? throw new Exception("Row cannot be null!");
                 for (int j = i; j < AdjacencyMatrix.Size; j++) {
-                    if (row[j] == 1) count++;
+                    count += row[j];
                 }
             }
             return count;
         }
         // na potrzeby zadania domowego
-        public static Graph ZadanieDomowe()
-        {
+        public static Graph ZadanieDomowe() {
             int seed = 1234;
             Graph ans = new();
             Random rng = new(seed);
@@ -160,8 +159,7 @@ namespace B8 {
             ans.AddNode(49);
             for (int i = 0; i < 5 + extraSize; i++) ans.AddNode(rng.Next(100));
             int connections = ans.NodeValues.Count + 5 + rng.Next(5);
-            for (int i = 0; i < connections; i++)
-            {
+            for (int i = 0; i < connections; i++) {
                 int x1 = rng.Next(ans.NodeValues.Count);
                 int x2 = rng.Next(ans.NodeValues.Count);
                 if (x1 == x2) continue;
