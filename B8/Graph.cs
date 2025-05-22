@@ -143,9 +143,7 @@ namespace B8 {
             int count = 0;
             for (int i = 0; i < AdjacencyMatrix.Size; i++) {
                 List<int> row = AdjacencyMatrix.GetRow(i) ?? throw new Exception("Row cannot be null!");
-                for (int j = i; j < AdjacencyMatrix.Size; j++) {
-                    count += row[j];
-                }
+                for (int j = i; j < AdjacencyMatrix.Size; j++) count += row[j];
             }
             return count;
         }
