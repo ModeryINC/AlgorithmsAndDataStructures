@@ -65,14 +65,12 @@ class Graph {
                 vertices.emplace_back(i, names[i]);
         }
         Graph(vector<string> names, vector<connection> connections) {
-            if(names.size() != connections.size())
-                throw invalid_argument("Wrong vector sizes!");
             for(int i = 0; i < names.size(); i++)
                 vertices.emplace_back(i, names[i]);
             this->connections = connections;
         }
         Graph(vector<int> ids, vector<string> names, vector<connection> connections) {
-            if(ids.size() != names.size() || ids.size() != connections.size())
+            if(ids.size() != names.size())
                 throw invalid_argument("Wrong vector sizes!");
             for(int i = 0; i < names.size(); i++)
                 vertices.emplace_back(ids[i], names[i]);
