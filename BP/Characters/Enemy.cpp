@@ -19,13 +19,13 @@ stats Enemy::resolveValue (int id, Types type) {
         return {id, 100, 1, 8, 5, string("Gwyllion")};
         break;
     case Types::Banshee:
-        return {id, 35, 1, 11, 20, string("Banshee")};
+        return {id, 35, 1, 11, 15, string("Banshee")};
         break;
     case Types::Dullahan:
         return {id, 120, 1, 12, 3, string("Dullahan")};
         break;
     default:
-        throw invalid_argument("Wrong Type!");
+        throw invalid_argument("Enemy: Wrong Type!");
     }
 }
 

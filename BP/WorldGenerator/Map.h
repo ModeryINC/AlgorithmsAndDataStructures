@@ -1,6 +1,7 @@
 #ifndef MAP
 #define MAP
 
+#include<iostream>
 #include<set>
 
 #include"../Utilities/RandomGenerator.h"
@@ -14,7 +15,7 @@ class Map : public Graph {
         const int stage;
         set<int> visitedVertex;
     public:
-        Map(int stage) : Graph(), stage(stage <= 0 ? 1 : (stage < 5 ? stage : 5)) {};
+        Map(int stage) : Graph(), stage(stage) {};
         static Map generateMap(int level);
 };
 

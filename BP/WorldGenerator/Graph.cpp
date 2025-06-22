@@ -48,8 +48,13 @@ void Graph::addConnection(int start, int end, int weight) {
     // cout << "Connection: " <<weight << " " << start << " " << end << endl;
     int start_id = this->find(start),
         end_id = this->find(end);
-    if(start_id == -1 || end_id == -1)
-        throw invalid_argument("Start or end isnt in ids");
+    if (start_id == -1 || end_id == -1) {
+        cout << start << ":" << start_id << " | " << end << ":" << end_id << " | ";
+        for (auto v : vertices)
+            cout << v.id << " ";
+        cout << "\n";
+        throw invalid_argument("Graph::connection: Start or end isnt in ids!");
+    }
     connections.emplace_back(weight, vertices[start_id], vertices[end_id]);
 }
 
@@ -61,8 +66,8 @@ void Graph::addVertex(string type) {
 }
 
 void Graph::addVertex(int id, string type) {
-    if(this->find(id) != -1)
-        throw invalid_argument("This id already exist!");
+    if (this->find(id) != -1)
+        throw invalid_argument("Graph::vertex: This id already exist!");
     string name = names[rGenerator.next()];
     vertices.emplace_back(id, type, name);
 }
@@ -80,17 +85,17 @@ int Graph::find(int id) {
 }
 
 int Graph::find(string text) {
-    if(vertices.size() == 0) return -1;
-    if((text) == "max") {
+    if (vertices.size() == 0) return -1;
+    if ((text) == "max") {
         int max = 0;
-        for(int i = 0; i < vertices.size(); i++)
-            if(vertices[i].id > max)
+        for (int i = 0; i < vertices.size(); i++)
+            if (vertices[i].id > max)
                 max = vertices[i].id;
         return max;
-    } else if((text) == "min") {
+    } else if ((text) == "min") {
         int min = 0;
-        for(int i = 0; i < vertices.size(); i++)
-            if(vertices[i].id < min)
+        for (int i = 0; i < vertices.size(); i++)
+            if (vertices[i].id < min)
                 min = vertices[i].id;
         return min;
     }
@@ -105,9 +110,9 @@ Graph::Graph(vector<string> types) {
 }
 
 Graph::Graph(vector<string> types, vector<connection> connections) {
-    if(names.size() || connections.size())
-        throw invalid_argument("Vectors cannot be empty!");
-    for(int i = 0; i < names.size(); i++) {
+    if (names.size() || connections.size())
+        throw invalid_argument("Graph: Vectors cannot be empty!");
+    for (int i = 0; i < names.size(); i++) {
         string name = names[rGenerator.next()];
         vertices.emplace_back(i, types[i], name);
     }
@@ -115,11 +120,11 @@ Graph::Graph(vector<string> types, vector<connection> connections) {
 }
 
 Graph::Graph(vector<int> ids, vector<string> types, vector<connection> connections) {
-    if(types.size() || connections.size())
-        throw invalid_argument("Vectors cannot be empty!");
-    if(ids.size() != types.size())
-        throw invalid_argument("Wrong vector sizes!");
-    for(int i = 0; i < types.size(); i++) {
+    if (types.size() || connections.size())
+        throw invalid_argument("Graph: Vectors cannot be empty!");
+    if (ids.size() != types.size())
+        throw invalid_argument("Graph: Wrong vector sizes!");
+    for (int i = 0; i < types.size(); i++) {
         string name = names[rGenerator.next()];
         vertices.emplace_back(ids[i], types[i], name);
     }

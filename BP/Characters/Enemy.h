@@ -12,6 +12,7 @@ using namespace std;
 struct stats {
     int id, health, mana, cashDrop, damage;
     string name;
+    
     stats(int id, int health, int mana, int cashDrop, int damage, string name);
 };
 
@@ -24,15 +25,18 @@ class Enemy : public Character {
             Banshee,
             Dullahan
         };
+    
     private:
         int damage;
         int cashDrop;
         static stats resolveValue (int id, Types type);
+    
     public:
         Enemy(int id, int health, int mana, int cashDrop, int damage, string name);
         Enemy(int id, Types type);
         Enemy(stats s);
         int getDamage() { return damage; }
+        int getCashDrop() {return cashDrop; }
 };
 
 #endif
