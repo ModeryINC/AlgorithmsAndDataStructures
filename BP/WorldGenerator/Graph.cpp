@@ -42,7 +42,7 @@ const array<string, 30> Graph::names = {
     "Starozytna Cytadela Ceffyl Dwr"
 };
 
-RandomGenerator Graph::rGenerator = RandomGenerator(0, 29);
+RandomGenerator Graph::rGenerator(0, 29);
 
 void Graph::addConnection(int start, int end, int weight) {
     // cout << "Connection: " <<weight << " " << start << " " << end << endl;

@@ -84,7 +84,9 @@ int main() {
                 while (true) {
                     cout << "Możliwe ruchy: ";
                     for (int n : neighbors) {
-                        cout << n << " ";
+                        if(visited.find(n) != visited.end())
+                            cout << "\033[35m";
+                        cout << n << "\033[0m ";
                     }
                     
                     string answer;
@@ -105,6 +107,7 @@ int main() {
             string answer;
             cout << "Czy chcesz przejść na wyzszy pozom? t/n\n";
             cin >> answer;
+            
             if (answer != "t" || answer != "T" || answer != "tak")
                 end == true;
             stage++;
