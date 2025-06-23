@@ -27,3 +27,5 @@ add_executable(CelticGame
     WorldGenerator/Graph.cpp
     WorldGenerator/Map.cpp
 )
+
+target_link_libraries(CelticGame pthread)
