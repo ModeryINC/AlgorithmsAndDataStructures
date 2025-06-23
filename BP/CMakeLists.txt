@@ -31,3 +31,12 @@ add_executable(CelticGame
 )
 
 target_link_libraries(CelticGame pthread)
+
+set(DLL_FOLDER "${PROJECT_SOURCE_DIR}/DLL")
+set(OUTPUT_DIR $<TARGET_FILE_DIR:CelticGame>)
+
+add_custom_command(TARGET CelticGame POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${DLL_FOLDER}"
+    "${OUTPUT_DIR}/DLL"
+)
