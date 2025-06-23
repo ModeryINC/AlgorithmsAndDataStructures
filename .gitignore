@@ -136,4 +136,5 @@ _NCrunch*
 */*.txt
 */build/*
 !*/build/*.exe
+!*/CMakeLists.txt
 ForReview/
