@@ -38,9 +38,11 @@ Map Map::generateMap(int stage) {
     for (int i = 0; i < (stage + 1); i++) {
         RandomGenerator vertexGenerator(0, (stage + 4));
         RandomGenerator weigthGenerator(1, 11);
-        int v1 = 0, v2 = 0;
+        
         bool isConnectionDifrent = false;
         while (!isConnectionDifrent) {
+            int v1 = 0, v2 = 0;
+            
             while (v1 == v2) {
                 v1 = vertexGenerator.next();
                 v2 = vertexGenerator.next();
